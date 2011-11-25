@@ -1,5 +1,15 @@
 require "intuit/version"
 
 module Intuit
-  # Your code goes here...
+  autoload :Client,  "intuit/client"
+  autoload :Base,    "intuit/base"
+  autoload :Account, "intuit/account"
+
+  # Configuration
+
+  class << self
+    attr_accessor :oauth_consumer_key
+    attr_accessor :oauth_consumer_secret
+    attr_accessor :app_token
+  end
 end

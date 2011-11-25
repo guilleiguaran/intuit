@@ -1,3 +1,6 @@
+require "rubygems"
+require "bundler/setup"
+
 require "intuit"
 require "active_support/test_case"
 require "mocha"

@@ -19,8 +19,11 @@ Gem::Specification.new do |s|
   s.require_paths = ["lib"]
 
   # specify any dependencies here; for example:
+  s.add_development_dependency "turn"
   s.add_development_dependency "mocha"
-  s.add_runtime_dependency "active_support"
+  s.add_runtime_dependency "i18n"
+  s.add_runtime_dependency "activesupport"
   s.add_runtime_dependency "oauth"
   s.add_runtime_dependency "happymapper"
+  s.add_runtime_dependency "nokogiri"
 end
