@@ -23,9 +23,9 @@ module Intuit
         builder = Nokogiri::XML::Builder.new do |xml|
           attrs = { "xmlns" => "http://www.intuit.com/sb/cdm/v2" }
           xml.send("#{klass.tag_name}Query", attrs) do
-            # xml.IncludeTagElements "Account/Type"
-            # xml.IncludeTagElements "Account/Name"
-            # xml.IncludeTagElements "Account/Desc"
+            klass.elements.each do |element|
+              xml.IncludeTagElements "#{klass.tag_name}/#{element.tag}"
+            end
           end
         end
 
