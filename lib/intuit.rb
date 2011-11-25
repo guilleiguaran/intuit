@@ -4,6 +4,7 @@ module Intuit
   autoload :Client,  "intuit/client"
   autoload :Base,    "intuit/base"
   autoload :Account, "intuit/account"
+  autoload :Item,    "intuit/item"
 
   # Configuration
 
