@@ -33,7 +33,7 @@ module Intuit
     end
 
     def log(message)
-      logger.warn(message) if log?
+      logger.debug(message) if log?
     end
   end
 
