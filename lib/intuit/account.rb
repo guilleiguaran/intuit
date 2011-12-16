@@ -1,14 +1,12 @@
 module Intuit
   class Account < Base
-    include HappyMapper
+    include SAXMachine
 
-    tag "Account"
-    element :id,          Integer, :tag => "Id"
-    element :name,        String,  :tag => "Name"
-    element :description, String,  :tag => "Desc"
-    element :active,      Boolean, :tag => "Active"
-    element :type,        String,  :tag => "Type"
-    element :subtype,     String,  :tag => "Subtype"
+    element "Id",      :as => :id,         :class => Id
+    element "Name",    :as => :name
+    element "Desc",    :as => :description
+    element "Type",    :as => :type
+    element "Subtype", :as => :subtype
 
     def self.find_by_type(*types)
       all.select { |a| Array.wrap(types).include?(a.type) }

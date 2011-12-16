@@ -3,7 +3,7 @@ module Intuit
     class APIError < RuntimeError
       attr_reader :response
 
-      def initialize(response)
+      def initialize(response = nil)
         @response = response
       end
 
