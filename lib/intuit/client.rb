@@ -8,6 +8,8 @@ module Intuit
     autoload :RetrieveAllResponse, "intuit/client/retrieve_all_response"
     autoload :CreateResponse,      "intuit/client/create_response"
 
+    autoload :APIError,            "intuit/client/errors"
+
     INTUIT_OAUTH_URL  = "https://oauth.intuit.com"
     API_URL           = "https://appcenter.intuit.com/api/v1"
     DATA_SERVICES_URL = "https://services.intuit.com/sb"

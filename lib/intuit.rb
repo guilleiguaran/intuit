@@ -32,8 +32,9 @@ module Intuit
       !!@log
     end
 
-    def log(message)
-      logger.debug(message) if log?
+    def log(*messages)
+      log_level = Symbol === messages.first ? messages.shift : :debug
+      logger.send(log_level, messages.join) if log?
     end
   end
 
