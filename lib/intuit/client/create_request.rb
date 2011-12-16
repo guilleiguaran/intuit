@@ -26,7 +26,7 @@ class Intuit::Client
         "xmlns:xsd"    => "http://www.w3.org/2001/XMLSchema",
         "xmlns"        => "http://www.intuit.com/sb/cdm/v2",
         "RequestId"    => request_id,
-        "FullResponse" => true
+        "FullResponse" => false # Atm Intuit API doesn't work very well when you request FullResponse
       }
       doc.root = doc.create_element "Add", attrs
       doc.root << resource.to_xml
