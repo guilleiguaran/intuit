@@ -1,11 +1,10 @@
-require "happymapper"
+require "sax-machine"
 require "active_support/core_ext/string/inflections"
 
 module Intuit
-  class Base
-    autoload :RetrieveRequest, "intuit/base/retrieve_request"
-    autoload :CreateRequest,   "intuit/base/create_request"
+  autoload :XMLBuilder, "intuit/base/xml_builder"
 
+  class Base
     def initialize(params = {})
       params.each do |key, value|
         send("#{key}=", value)
@@ -20,31 +19,27 @@ module Intuit
       id.nil?
     end
 
+    def to_xml
+      XMLBuilder.new(self).xml
+    end
+
     private
 
     def create
-      reload self.class.perform_request(:create, self).first
+      Client.create(self)
     end
 
     def update
       raise "Not Implemented"
     end
 
-    def reload(updated)
-      self.class.elements.each do |element|
-        send("#{element.method_name}=", updated.send(element.method_name))
-      end
-    end
-
     class << self
       def all
-        perform_request :retrieve
+        Client.retrieve_all(self)
       end
 
-      def perform_request(request, resource = self)
-        result = Base.const_get("#{request.to_s.camelize}Request").
-          new(Client.client, resource).perform
-        parse(result)
+      def element_name
+        name.to_s.split("::").last
       end
     end
   end
