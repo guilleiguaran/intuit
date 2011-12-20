@@ -1,8 +1,6 @@
 module Intuit
   class SalesReceipt
     class Header < Base
-      include SAXMachine
-
       element "DocNumber",      :as => :number
       element "TxnDate",        :as => :date
       element "CustomerId",     :as => :customer_id, :class => Id

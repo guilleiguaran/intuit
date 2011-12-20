@@ -1,7 +1,5 @@
 module Intuit
   class Account < Base
-    include SAXMachine
-
     element "Id",      :as => :id,         :class => Id
     element "Name",    :as => :name
     element "Desc",    :as => :description

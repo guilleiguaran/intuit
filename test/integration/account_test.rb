@@ -5,12 +5,7 @@ module Intuit
     class FindAccountTest < TestCase
       test "find all accounts" do
         accounts = Account.all
-        assert       !accounts.empty?
-        assert_equal 14, accounts.first.id
-        assert_equal "Liability", accounts.first.type
-        assert_equal "Sales Tax Payable", accounts.first.name
-        assert_equal "Unpaid sales taxes. Amounts charged on sales, but not yet paid to the government", accounts.first.description
-        assert       accounts.first.active
+        assert !accounts.empty?
       end
 
       test "find accounts by type" do

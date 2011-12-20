@@ -2,8 +2,6 @@ module Intuit
   class Item < Base
     autoload :AccountRef, "intuit/item/account_ref"
 
-    include SAXMachine
-
     element "Id",                :as => :id,             :class => Id
     element "ItemParentId",      :as => :parent_id,      :class => Id
     element "ItemParentName",    :as => :parent_name

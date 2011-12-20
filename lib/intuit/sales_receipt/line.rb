@@ -1,8 +1,6 @@
 module Intuit
   class SalesReceipt
     class Line < Base
-      include SAXMachine
-
       element "Taxable",        :as => :taxable
       element "ItemId",         :as => :item_id,           :class => Id
       element "UnitPrice",      :as => :price

@@ -20,30 +20,41 @@ class Intuit::Base
         doc.root[attribute] = value
       end
 
-      # Child elements
+      # Elements
+
+      # Collect all elements and collections
+      elements = {}
+
       resource.class.columns.each do |column|
         element = column.name
         value   = value(column)
-        next if value.nil?
 
-        if value.is_a?(Intuit::Base)
-          child = Nokogiri::XML(value.to_xml)
-          child.root.name = element
-          doc.root << child.root
-        else
-          doc.root << doc.create_element(element, value)
+        unless value.nil?
+          elements[element] = [value]
         end
       end
 
-      # Collections
       resource.class.sax_config.collection_elements.values.flatten.each do |column|
         element = column.name
         values  = resource.send(column.accessor)
 
+        unless values.empty?
+          elements[element] = values
+        end
+      end
+
+      # Add each one in the correct order
+      resource.class.elements_order.each do |element|
+        next unless elements[element]
+        values = elements[element]
         values.each do |value|
-          child = Nokogiri::XML(value.to_xml)
-          child.root.name = element
-          doc.root << child.root
+          if value.is_a?(Intuit::Base)
+            child = Nokogiri::XML(value.to_xml)
+            child.root.name = element
+            doc.root << child.root
+          else
+            doc.root << doc.create_element(element, value)
+          end
         end
       end
 
