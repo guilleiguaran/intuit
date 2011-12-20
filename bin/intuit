@@ -1,0 +1,2 @@
+#!/bin/bash
+exec irb -I`dirname $0`/../lib -rubygems -rintuit
