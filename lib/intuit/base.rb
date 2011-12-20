@@ -34,8 +34,8 @@ module Intuit
     end
 
     class << self
-      def all
-        Client.retrieve_all(self)
+      def all(filters = {})
+        Client.retrieve_all(self, filters)
       end
 
       def element_name

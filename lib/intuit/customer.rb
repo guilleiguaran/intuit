@@ -10,5 +10,11 @@ module Intuit
     element  "FamilyName", :as => :last_name
     element  "MiddleName", :as => :middle_name
     element  "Name",       :as => :name
+
+    class << self
+      def find_by_name(name)
+        all(:FirstLastName => name)
+      end
+    end
   end
 end

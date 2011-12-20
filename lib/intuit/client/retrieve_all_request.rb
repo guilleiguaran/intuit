@@ -2,10 +2,10 @@ require "nokogiri"
 
 class Intuit::Client
   class RetrieveAllRequest
-    attr :client, :klass
+    attr :client, :klass, :filters
 
-    def initialize(client, klass)
-      @client, @klass = client, klass
+    def initialize(client, klass, filters = {})
+      @client, @klass, @filters = client, klass, filters
     end
 
     def perform
@@ -24,6 +24,9 @@ class Intuit::Client
           "xmlns" => "http://www.intuit.com/sb/cdm/v2"
         }
         xml.send("#{klass.element_name}Query", attrs) do
+          filters.each do |key, value|
+            xml.send(key, value)
+          end
           # klass.elements.each do |element|
           #   xml.IncludeTagElements "#{klass.tag_name}/#{element.tag}"
           # end

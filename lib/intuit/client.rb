@@ -29,8 +29,8 @@ module Intuit
         OAuth::AccessToken.new(consumer, token, secret)
       end
 
-      def retrieve_all(resource)
-        perform_request :retrieve_all, resource
+      def retrieve_all(resource, filters = {})
+        perform_request :retrieve_all, resource, filters
       end
 
       def create(resource)
@@ -50,8 +50,9 @@ module Intuit
         )
       end
 
-      def perform_request(request_name, resource)
-        request = Client.const_get("#{request_name.to_s.camelize}Request").new(client, resource)
+      def perform_request(request_name, resource, attrs = nil)
+        params = [client, resource, attrs].compact
+        request = Client.const_get("#{request_name.to_s.camelize}Request").new(*params)
         response = Client.const_get("#{request_name.to_s.camelize}Response").new(request.perform, resource)
         response.result
       end

@@ -6,9 +6,9 @@ module Intuit
         Intuit.oauth_consumer_secret = "o67aShjgcfLBdgEDpZNTuM6bgUar2FvceB2lJq65"
         Intuit.app_token             = "674bfd69b279eb43e8b9162ba4bc8ebcfbc9"
 
-        Client.token    = "qyprd4LnGPxj1Vr1HcUmi54lNzepZgv7PEDVFvCF7Ix9cqi4"
-        Client.secret   = "1curCpT7tUmvVUlDJR4jR7b7niWvnvtGidB9J7Xv"
-        Client.realm_id = "176849307"
+        Client.token    = "qyprdtmj4Lk7bPYTM3myAHBK69GLswWVIaLoG4gE6LgF0odw"
+        Client.secret   = "9bnXn9Xi8xCrPn9MEgyied971Zd1MIgnrLSjs4at"
+        Client.realm_id = "312088315"
       end
 
       teardown do
