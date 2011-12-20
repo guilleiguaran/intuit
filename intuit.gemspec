@@ -8,8 +8,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Eugene Bolshakov"]
   s.email       = ["eugene.bolshakov@gmail.com"]
   s.homepage    = ""
-  s.summary     = %q{TODO: Write a gem summary}
-  s.description = %q{TODO: Write a gem description}
+  s.summary     = %q{Intuit Anywhere API Client}
+  s.description = %q{Partial implementation of the QB Windows Data Services}
 
   s.rubyforge_project = "intuit"
 
