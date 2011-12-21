@@ -13,6 +13,7 @@ module Intuit
   autoload :Customer,     "intuit/customer"
   autoload :Email,        "intuit/email"
   autoload :SalesTax,     "intuit/sales_tax"
+  autoload :Vendor,       "intuit/vendor"
 
   # Configuration
 
