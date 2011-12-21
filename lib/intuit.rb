@@ -12,6 +12,7 @@ module Intuit
   autoload :Address,      "intuit/address"
   autoload :Customer,     "intuit/customer"
   autoload :Email,        "intuit/email"
+  autoload :SalesTax,     "intuit/sales_tax"
 
   # Configuration
 
