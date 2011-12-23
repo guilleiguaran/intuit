@@ -16,6 +16,7 @@ class Intuit::Base
       resource.class.sax_config.top_level_attributes.each do |attr|
         attribute = attr.name
         value     = value(attr)
+        next if value.empty?
 
         doc.root[attribute] = value
       end
