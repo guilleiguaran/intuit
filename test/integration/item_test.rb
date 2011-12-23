@@ -46,5 +46,12 @@ module Intuit
         end
       end
     end
+
+    class DeleteItemTest < TestCase
+      test "destroy item" do
+        item = Item.all.first
+        item.destroy
+      end
+    end
   end
 end

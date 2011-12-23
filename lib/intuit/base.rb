@@ -21,6 +21,10 @@ module Intuit
       id.nil?
     end
 
+    def destroy
+      Client.delete(self)
+    end
+
     def to_xml
       XMLBuilder.new(self).xml
     end

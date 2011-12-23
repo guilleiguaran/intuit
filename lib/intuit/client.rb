@@ -4,9 +4,11 @@ module Intuit
   class Client
     autoload :RetrieveAllRequest,  "intuit/client/retrieve_all_request"
     autoload :CreateRequest,       "intuit/client/create_request"
+    autoload :DeleteRequest,       "intuit/client/delete_request"
 
     autoload :RetrieveAllResponse, "intuit/client/retrieve_all_response"
     autoload :CreateResponse,      "intuit/client/create_response"
+    autoload :DeleteResponse,      "intuit/client/delete_response"
 
     autoload :APIError,            "intuit/client/errors"
 
@@ -35,6 +37,10 @@ module Intuit
 
       def create(resource)
         perform_request :create, resource
+      end
+
+      def delete(resource)
+        perform_request :delete, resource
       end
 
       private

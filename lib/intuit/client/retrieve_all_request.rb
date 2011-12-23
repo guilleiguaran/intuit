@@ -22,6 +22,7 @@ class Intuit::Client
       builder = Nokogiri::XML::Builder.new do |xml|
         attrs = {
           "xmlns" => "http://www.intuit.com/sb/cdm/v2"
+          # "ErroredObjectsOnly" => true # This returns objects in error state after failed sync
         }
         xml.send("#{klass.element_name}Query", attrs) do
           filters.each do |key, value|
