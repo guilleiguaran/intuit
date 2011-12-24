@@ -21,7 +21,7 @@ module Intuit
           :price          => Money.new(:amount => 1, :currency_code => "USD")
         )
         item.save
-        assert item.id
+        assert item.id.id
       end
 
       test "create subitem" do
@@ -36,7 +36,7 @@ module Intuit
           :parent_id      => Intuit::Id.new(:id => "1", :domain => "QB")
         )
         item.save
-        assert item.id
+        assert item.id.id
       end
 
       test "create error" do

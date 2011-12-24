@@ -10,7 +10,7 @@ class Intuit::Client
     def result
       Intuit.log doc.to_xml
       doc.search(klass.element_name).map do |el|
-        klass.parse(el.to_s)
+        klass.parse(el.to_xml)
       end
     end
   end

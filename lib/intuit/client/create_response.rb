@@ -20,7 +20,7 @@ class Intuit::Client
     private
 
     def update_resource
-      resource.id = Intuit::Id.parse(doc.at("Id").to_xml)
+      resource.id = resource.class.parse(doc.at("ObjectRef").to_xml).id
       # The above requires FullResponse to be returned,
       # which is currently disabled
       # created = resource.class.parse(xml)
