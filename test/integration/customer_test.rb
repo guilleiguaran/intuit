@@ -39,7 +39,7 @@ module Intuit
         )
 
         customer.save
-        assert customer.id
+        assert customer.id.id
       end
     end
   end
