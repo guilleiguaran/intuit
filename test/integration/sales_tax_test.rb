@@ -7,6 +7,10 @@ module Intuit
         taxes = SalesTax.all
         assert !taxes.empty?
       end
+
+      test "find by name" do
+        assert SalesTax.find_by_name("Sales Tax")
+      end
     end
 
     class CreateSalesTaxTest < TestCase

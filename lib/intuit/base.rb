@@ -44,6 +44,10 @@ module Intuit
         Client.retrieve_all(self, filters)
       end
 
+      def find_by_name(name)
+        all.select { |i| i.name == name }
+      end
+
       def element_name
         name.to_s.split("::").last
       end
