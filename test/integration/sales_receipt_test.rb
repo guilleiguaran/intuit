@@ -7,15 +7,21 @@ module Intuit
         receipts = SalesReceipt.all
         assert !receipts.empty?
       end
+
+      test "find by date" do
+        receipts = SalesReceipt.find_by_date("2011-12-21")
+        assert !receipts.empty?
+      end
     end
 
     class CreateSalesReceiptTest < TestCase
       test "create sales receipt" do
         receipt = SalesReceipt.new
+
         receipt.header = SalesReceipt::Header.new(
-          :number           => Time.now.to_i,
-          :date             => Date.today.to_s,
-          :customer_id      => Id.new(:id => "1", :domain => "QB"),
+          :number           => "#1282",
+          :date             => "2011-12-21",
+          :customer_id      => Id.new(:id => "10", :domain => "QB"),
           :shipping_address => Intuit::Address.new(
             :city        => "Ottawa",
             :county      => "Ontario",
@@ -23,23 +29,27 @@ module Intuit
             :line1       => "138 Clarence St",
             :line2       => "Apartment 1",
             :postal_code => "K1N5P8"
-          )
+          ),
+          :tax_id           => Id.new(:id => "74", :domain => "QB")
         )
         receipt.lines = [
           SalesReceipt::Line.new(
-            :item_id  => Id.new(:id => 2, :domain => "QB"),
-            :price    => 66,
-            :quantity => 2
+            :item_id  => Id.new(:id => "2078204", :domain => "NG"),
+            :price    => 25.99,
+            :quantity => 1
           ),
           SalesReceipt::Line.new(
-            :item_id  => Id.new(:id => 2, :domain => "QB"),
-            :price    => 44,
-            :quantity => 1
+            :item_id => Id.new(:id => "3", :domain => "QB"),
+            :amount  => 3.33
+          ),
+          SalesReceipt::Line.new(
+            :item_id => Id.new(:id => "75", :domain => "QB"),
+            :amount  => 0.5
           )
         ]
 
         receipt.save
-        assert receipt.id
+        assert receipt.id.id
       end
     end
   end
