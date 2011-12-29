@@ -14,15 +14,21 @@ module Intuit
     element "COGSAccountRef",    :as => :cogs_account,   :class => AccountRef
     element "AssetAccountRef",   :as => :asset_account,  :class => AccountRef
 
-    def self.find_by_type(*types)
-      all.select { |a| Array.wrap(types).include?(a.type) }
-    end
+    class << self
+      def find_by_type(*types)
+        all.select { |a| Array.wrap(types).include?(a.type) }
+      end
 
-    def self.find_by_name(name)
-      all.select do |item|
-        item_words = item.full_name.split(/[\s:]/).map(&:downcase).map(&:strip)
-        search_words = name.split(/[\s\W:]/).map(&:downcase).map(&:strip)
-        (search_words - item_words).empty?
+      def find_by_name(name)
+        all.select do |item|
+          (words(name) - words(item.full_name)).empty?
+        end
+      end
+
+      private
+
+      def words(name)
+        name.split(/[\s\W:]/).map(&:downcase).map(&:strip).reject(&:blank?)
       end
     end
 

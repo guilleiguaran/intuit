@@ -31,6 +31,11 @@ module Intuit
       items = Item.find_by_name("bar foo")
       assert_equal ["Foo:Bar"], items.map(&:full_name)
     end
+
+    test "ignore spaces and punctuation" do
+      items = Item.find_by_name("bar - foo!")
+      assert_equal ["Foo:Bar"], items.map(&:full_name)
+    end
   end
 
   class FindByTypeItemTest < ActiveSupport::TestCase
