@@ -25,6 +25,7 @@ module Intuit
       end
 
       test "create subitem" do
+        parent = Item.all.first
         item = Item.new(
           :name           => "Testing#{Time.now.to_i}",
           :type           => "Inventory",
@@ -33,10 +34,47 @@ module Intuit
           :cogs_account   => Item::AccountRef.new(:name => "Cost of Goods Sold"),
           :purchase_cost  => Money.new(:amount => 0, :currency_code => "USD"),
           :price          => Money.new(:amount => 1, :currency_code => "USD"),
-          :parent_id      => Intuit::Id.new(:id => "1", :domain => "QB")
+          :parent_id      => parent.id
         )
         item.save
         assert item.id.id
+      end
+
+      test "multiple subitems" do
+        parent = Item.new(
+          :name           => "Parent #{Time.now.to_i}",
+          :type           => "Inventory",
+          :income_account => Item::AccountRef.new(:name => "Special Services Income"),
+          :asset_account  => Item::AccountRef.new(:name => "Inventory Asset"),
+          :cogs_account   => Item::AccountRef.new(:name => "Cost of Goods Sold"),
+          :purchase_cost  => Money.new(:amount => 0, :currency_code => "USD"),
+          :price          => Money.new(:amount => 1, :currency_code => "USD")
+        )
+        parent.save
+
+        child1 = Item.new(
+          :name           => "Child #{Time.now.to_i}",
+          :type           => "Inventory",
+          :income_account => Item::AccountRef.new(:name => "Special Services Income"),
+          :asset_account  => Item::AccountRef.new(:name => "Inventory Asset"),
+          :cogs_account   => Item::AccountRef.new(:name => "Cost of Goods Sold"),
+          :purchase_cost  => Money.new(:amount => 0, :currency_code => "USD"),
+          :price          => Money.new(:amount => 1, :currency_code => "USD"),
+          :parent_id      => parent.id
+        )
+        child1.save
+
+        child2 = Item.new(
+          :name           => "Child #{Time.now.to_i}",
+          :type           => "Inventory",
+          :income_account => Item::AccountRef.new(:name => "Special Services Income"),
+          :asset_account  => Item::AccountRef.new(:name => "Inventory Asset"),
+          :cogs_account   => Item::AccountRef.new(:name => "Cost of Goods Sold"),
+          :purchase_cost  => Money.new(:amount => 0, :currency_code => "USD"),
+          :price          => Money.new(:amount => 1, :currency_code => "USD"),
+          :parent_id      => parent.id
+        )
+        child2.save
       end
 
       test "create error" do

@@ -7,7 +7,6 @@ module Intuit
     element "ItemParentName",    :as => :parent_name
     element "Name",              :as => :name
     element "Desc",              :as => :description
-    element "Active",            :as => :active
     element "UnitPrice",         :as => :price,          :class => Money
     element "Type",              :as => :type
     element "IncomeAccountRef",  :as => :income_account, :class => AccountRef
@@ -21,7 +20,9 @@ module Intuit
 
     def self.find_by_name(name)
       all.select do |item|
-        item.name =~ %r{#{name.downcase}}i
+        item_words = item.full_name.split(/[\s:]/).map(&:downcase).map(&:strip)
+        search_words = name.split(/[\s\W:]/).map(&:downcase).map(&:strip)
+        (search_words - item_words).empty?
       end
     end
 
