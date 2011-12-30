@@ -17,11 +17,12 @@ module Intuit
     class CreateSalesReceiptTest < TestCase
       test "create sales receipt" do
         receipt = SalesReceipt.new
-
+        customer = Customer.all.first
         receipt.header = SalesReceipt::Header.new(
           :number           => "#1282",
           :date             => "2011-12-21",
-          :customer_id      => Id.new(:id => "10", :domain => "QB"),
+          :customer_id      => customer.id,
+          :customer_name    => customer.name,
           :shipping_address => Intuit::Address.new(
             :city        => "Ottawa",
             :county      => "Ontario",
@@ -32,11 +33,13 @@ module Intuit
           ),
           :tax_id           => Id.new(:id => "74", :domain => "QB")
         )
+        item = Item.all.first
         receipt.lines = [
           SalesReceipt::Line.new(
-            :item_id  => Id.new(:id => "2078204", :domain => "NG"),
-            :price    => 25.99,
-            :quantity => 1
+            :item_id   => item.id,
+            :item_name => item.full_name,
+            :price     => 25.99,
+            :quantity  => 1
           ),
           SalesReceipt::Line.new(
             :item_id => Id.new(:id => "3", :domain => "QB"),
