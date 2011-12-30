@@ -34,7 +34,8 @@ module Intuit
           :cogs_account   => Item::AccountRef.new(:name => "Cost of Goods Sold"),
           :purchase_cost  => Money.new(:amount => 0, :currency_code => "USD"),
           :price          => Money.new(:amount => 1, :currency_code => "USD"),
-          :parent_id      => parent.id
+          :parent_id      => parent.id,
+          :parent_name    => parent.name
         )
         item.save
         assert item.id.id
@@ -60,7 +61,8 @@ module Intuit
           :cogs_account   => Item::AccountRef.new(:name => "Cost of Goods Sold"),
           :purchase_cost  => Money.new(:amount => 0, :currency_code => "USD"),
           :price          => Money.new(:amount => 1, :currency_code => "USD"),
-          :parent_id      => parent.id
+          :parent_id      => parent.id,
+          :parent_name    => parent.name
         )
         child1.save
 
@@ -72,7 +74,8 @@ module Intuit
           :cogs_account   => Item::AccountRef.new(:name => "Cost of Goods Sold"),
           :purchase_cost  => Money.new(:amount => 0, :currency_code => "USD"),
           :price          => Money.new(:amount => 1, :currency_code => "USD"),
-          :parent_id      => parent.id
+          :parent_id      => parent.id,
+          :parent_name    => parent.name
         )
         child2.save
       end
