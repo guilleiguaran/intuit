@@ -1,19 +1,19 @@
 require "intuit/version"
-require "logger"
 
 module Intuit
-  autoload :Client,       "intuit/client"
-  autoload :Base,         "intuit/base"
-  autoload :Id,           "intuit/id"
-  autoload :Money,        "intuit/money"
-  autoload :Account,      "intuit/account"
-  autoload :Item,         "intuit/item"
-  autoload :SalesReceipt, "intuit/sales_receipt"
-  autoload :Address,      "intuit/address"
-  autoload :Customer,     "intuit/customer"
-  autoload :Email,        "intuit/email"
-  autoload :SalesTax,     "intuit/sales_tax"
-  autoload :Vendor,       "intuit/vendor"
+  autoload :DefaultLogger, "intuit/default_logger"
+  autoload :Client,        "intuit/client"
+  autoload :Base,          "intuit/base"
+  autoload :Id,            "intuit/id"
+  autoload :Money,         "intuit/money"
+  autoload :Account,       "intuit/account"
+  autoload :Item,          "intuit/item"
+  autoload :SalesReceipt,  "intuit/sales_receipt"
+  autoload :Address,       "intuit/address"
+  autoload :Customer,      "intuit/customer"
+  autoload :Email,         "intuit/email"
+  autoload :SalesTax,      "intuit/sales_tax"
+  autoload :Vendor,        "intuit/vendor"
 
   # Configuration
 
@@ -25,7 +25,7 @@ module Intuit
     attr_writer :logger
 
     def logger
-      @logger ||= Logger.new(STDERR)
+      @logger ||= DefaultLogger.new
     end
 
     attr_writer :log
@@ -34,9 +34,8 @@ module Intuit
       !!@log
     end
 
-    def log(*messages)
-      log_level = Symbol === messages.first ? messages.shift : :debug
-      logger.send(log_level, messages.join) if log?
+    def log(action, message, details)
+      logger.send(action, message, details) if log?
     end
   end
 

@@ -31,7 +31,7 @@ class Intuit::Client
       doc.root = doc.create_element "Add", attrs
       doc.root << resource.to_xml
       xml = doc.to_xml
-      Intuit.log xml
+      Intuit.log :request, "Create request", xml
       xml
     end
 

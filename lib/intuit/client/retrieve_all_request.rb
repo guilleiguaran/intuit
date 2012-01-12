@@ -35,7 +35,7 @@ class Intuit::Client
       end
 
       xml = builder.to_xml
-      Intuit.log xml
+      Intuit.log :request, "Retrieve request", xml
       xml
     end
 

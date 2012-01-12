@@ -33,7 +33,7 @@ class Intuit::Client
       object << resource.id.to_xml
       doc.root << object
       xml = doc.to_xml
-      Intuit.log xml
+      Intuit.log :request, "Delete request", xml
       xml
     end
 

@@ -7,11 +7,10 @@ class Intuit::Client
     end
 
     def result
+      Intuit.log :response, "Delete response", doc.to_xml
       if doc.at("Success")
-        Intuit.log doc.to_xml
         true
       else
-        Intuit.log :warn, doc.to_xml
         raise APIError.new(doc)
       end
     end
