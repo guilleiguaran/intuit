@@ -80,6 +80,19 @@ module Intuit
         child2.save
       end
 
+      test "create other charge item" do
+        item = Item.new(
+          :name            => "Testing#{Time.now.to_i}",
+          :type            => "Other Charge",
+          :income_account  => Item::AccountRef.new(:name => "Special Services Income"),
+          :expense_account => Item::AccountRef.new(:name => "Special Services Income"),
+          :purchase_cost   => Money.new(:amount => 0, :currency_code => "USD"),
+          :price           => Money.new(:amount => 1, :currency_code => "USD")
+        )
+        item.save
+        assert item.id.id
+      end
+
       test "create error" do
         item = Item.new(:type => "Inventory")
         assert_raise Client::APIError do

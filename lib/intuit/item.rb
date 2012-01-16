@@ -2,17 +2,18 @@ module Intuit
   class Item < Base
     autoload :AccountRef, "intuit/item/account_ref"
 
-    element "Id",                :as => :id,             :class => Id
-    element "ItemParentId",      :as => :parent_id,      :class => Id
+    element "Id",                :as => :id,              :class => Id
+    element "ItemParentId",      :as => :parent_id,       :class => Id
     element "ItemParentName",    :as => :parent_name
     element "Name",              :as => :name
     element "Desc",              :as => :description
-    element "UnitPrice",         :as => :price,          :class => Money
+    element "UnitPrice",         :as => :price,           :class => Money
     element "Type",              :as => :type
-    element "IncomeAccountRef",  :as => :income_account, :class => AccountRef
-    element "PurchaseCost",      :as => :purchase_cost,  :class => Money
-    element "COGSAccountRef",    :as => :cogs_account,   :class => AccountRef
-    element "AssetAccountRef",   :as => :asset_account,  :class => AccountRef
+    element "IncomeAccountRef",  :as => :income_account,  :class => AccountRef
+    element "PurchaseCost",      :as => :purchase_cost,   :class => Money
+    element "COGSAccountRef",    :as => :cogs_account,    :class => AccountRef
+    element "AssetAccountRef",   :as => :asset_account,   :class => AccountRef
+    element "ExpenseAccountRef", :as => :expense_account, :class => AccountRef
 
     class << self
       def find_by_type(*types)
