@@ -56,7 +56,7 @@ module Intuit
         @elements_order ||= []
       end
 
-      # Moneypatching SAXMachine to populate elements_order
+      # Monkeypatching SAXMachine to populate elements_order
 
       alias :sax_machine_element :element
       alias :sax_machine_elements :elements
@@ -69,6 +69,20 @@ module Intuit
       def elements(name, options)
         elements_order << name
         sax_machine_elements(name, options)
+      end
+
+      # Intuit Query-specific stuff
+
+      def request_uri
+        element_name.downcase
+      end
+
+      def retrieve_request_name
+        "#{element_name}Query"
+      end
+
+      def retrieve_response_name
+        element_name
       end
     end
   end

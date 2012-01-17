@@ -9,7 +9,7 @@ class Intuit::Client
 
     def result
       Intuit.log :response, "Retrieve response", doc.to_xml
-      doc.search(klass.element_name).map do |el|
+      doc.search(klass.retrieve_response_name).map do |el|
         klass.parse(el.to_xml)
       end
     end

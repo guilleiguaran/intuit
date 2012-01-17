@@ -14,6 +14,7 @@ module Intuit
   autoload :Email,         "intuit/email"
   autoload :SalesTax,      "intuit/sales_tax"
   autoload :Vendor,        "intuit/vendor"
+  autoload :SyncActivity,  "intuit/sync_activity"
 
   # Configuration
 

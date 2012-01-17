@@ -15,7 +15,7 @@ class Intuit::Client
     private
 
     def url
-      "#{Intuit::Client::DATA_SERVICES_URL}/#{klass.element_name.downcase}/v2/#{Intuit::Client.realm_id}"
+      "#{Intuit::Client::DATA_SERVICES_URL}/#{klass.request_uri}/v2/#{Intuit::Client.realm_id}"
     end
 
     def xml
@@ -24,7 +24,7 @@ class Intuit::Client
           "xmlns" => "http://www.intuit.com/sb/cdm/v2"
           # "ErroredObjectsOnly" => true # This returns objects in error state after failed sync
         }
-        xml.send("#{klass.element_name}Query", attrs) do
+        xml.send("#{klass.retrieve_request_name}", attrs) do
           filters.each do |key, value|
             xml.send(key, value)
           end
