@@ -15,6 +15,7 @@ module Intuit
   autoload :SalesTax,      "intuit/sales_tax"
   autoload :Vendor,        "intuit/vendor"
   autoload :SyncActivity,  "intuit/sync_activity"
+  autoload :SyncStatus,    "intuit/sync_status"
 
   # Configuration
 
