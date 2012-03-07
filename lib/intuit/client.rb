@@ -43,6 +43,11 @@ module Intuit
         perform_request :delete, resource
       end
 
+      def disconnect
+        client.get("#{API_URL}/Connection/Disconnect")
+        true
+      end
+
       private
 
       def consumer
