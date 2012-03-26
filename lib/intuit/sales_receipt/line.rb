@@ -1,6 +1,7 @@
 module Intuit
   class SalesReceipt
     class Line < Base
+      element "Desc",           :as => :description
       element "Taxable",        :as => :taxable
       element "Amount",         :as => :amount
       element "ItemId",         :as => :item_id,           :class => Id
