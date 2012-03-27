@@ -3,6 +3,7 @@ module Intuit
     element "Id",                     :as => :id, :class => Id
     element "Line1",                  :as => :line1
     element "Line2",                  :as => :line2
+    element "Line3",                  :as => :line3
     element "City",                   :as => :city
     element "Country",                :as => :country
     element "CountrySubDivisionCode", :as => :state
