@@ -40,8 +40,8 @@ module Intuit
     end
 
     class << self
-      def all(filters = {})
-        Client.retrieve_all(self, filters)
+      def all(filters = {}, errored = false)
+        Client.retrieve_all(self, filters, errored)
       end
 
       def find_by_name(name)

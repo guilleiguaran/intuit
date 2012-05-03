@@ -2,10 +2,10 @@ require "nokogiri"
 
 class Intuit::Client
   class RetrieveAllRequest
-    attr :client, :klass, :filters
+    attr :client, :klass, :filters, :errored
 
-    def initialize(client, klass, filters = {})
-      @client, @klass, @filters = client, klass, filters
+    def initialize(client, klass, filters = {}, errored = false)
+      @client, @klass, @filters, @errored = client, klass, filters, errored
     end
 
     def perform
@@ -20,17 +20,17 @@ class Intuit::Client
 
     def xml
       builder = Nokogiri::XML::Builder.new do |xml|
-        attrs = {
-          "xmlns" => "http://www.intuit.com/sb/cdm/v2"
-          # "ErroredObjectsOnly" => true # This returns objects in error state after failed sync
-        }
+        attrs = { "xmlns" => "http://www.intuit.com/sb/cdm/v2" }
+
+        if errored
+          # This returns objects in error state after failed sync
+          attrs["ErroredObjectsOnly"] = true
+        end
+
         xml.send("#{klass.retrieve_request_name}", attrs) do
           filters.each do |key, value|
             xml.send(key, value)
           end
-          # klass.elements.each do |element|
-          #   xml.IncludeTagElements "#{klass.tag_name}/#{element.tag}"
-          # end
         end
       end
 
